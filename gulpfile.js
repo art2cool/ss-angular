@@ -9,7 +9,6 @@ var gulp = require('gulp'),
 //--min.js
 //add test
 //front test
-
 gulp.task('server', function () {
     
     nodemon({
