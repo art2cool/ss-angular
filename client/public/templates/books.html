@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="btn btn-success btn-sm pull-right" ng-click="BooksCtrl.newRowShow = true">+ Add New</div>
+	<table class="table table-striped ">
+		<thead>
+			<tr>
+				<td>№</td>
+				<td>author</td>
+				<td>title</td>
+				<td>genre</td>
+				<td>read</td>
+				<td>Actions</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-show="BooksCtrl.newRowShow">
+				<td></td>
+				<td><input type="text" ng-model="BooksCtrl.model.author"></input></td>
+				<td><input type="text" ng-model="BooksCtrl.model.title"></input></td>
+				<td><input type="text" ng-model="BooksCtrl.model.genre"></input></td>
+				<td><input type="checkbox" ng-model="BooksCtrl.model.read"></input></td>
+				<td>
+					<div class="btn btn-success btn-xs" ng-click="BooksCtrl.createBook(BooksCtrl.model)">ok</div>
+					<div class="btn btn-default btn-xs" ng-click="BooksCtrl.newRowShow = false"> X </div>
+				</td>
+				
+			</tr>
+			<tr ng-repeat="book in BooksCtrl.books">
+				<td>{{$index + 1}}</td>
+				<td>{{book.author}}</td>
+				<td>{{book.title}}</td>
+				<td>{{book.genre}}</td>
+				<td>{{book.read}}</td>
+				<td>
+					<div class="btn btn-primary btn-xs">edit</div>
+					<div class="btn btn-danger btn-xs" ng-click = BooksCtrl.removeBook(book)>del</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

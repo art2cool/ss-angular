@@ -1,0 +1,25 @@
+{
+  "name": "book-api",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "NODE_ENV=test mocha"
+  },
+  "author": "Volodymyr Paskiv",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "chai-http": "^2.0.1",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.0.4",
+    "mongoose": "^4.2.8",
+    "supertest": "^1.2.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  }
+}
