@@ -1,3 +1,6 @@
-'use strict'
+(function() {
+	'use strict'
 
-angular.module('MyApp',['ui.router', 'books.api']);
+	angular.module('MyApp',['ui.router', 'books.api'])
+
+})();

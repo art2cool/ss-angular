@@ -1,36 +1,42 @@
+(function() {
 'use strict';
 
 angular.module('books.api', []);
 
-angular.module('books.api')
-	.factory('dataFactory', ['$http', function($http) {
-		
-		var urlBase = '/api/books';
-		var dataFactory = {};
+})();
+(function() {
 
-		dataFactory.getBooks = function(query) {
-			return $http.get(urlBase, {params: query});
-		};
+	angular.module('books.api')
+		.factory('dataFactory', ['$http', function($http) {
+			
+			var urlBase = '/api/books';
+			var dataFactory = {};
 
-		dataFactory.getBook = function(id) {
-			return $http.get(urlBase + '/' + id);
-		}
+			dataFactory.getBooks = function(query) {
+				return $http.get(urlBase, {params: query});
+			};
 
-		dataFactory.insertBook = function(book) {
-			return $http.post(urlBase, book);
-		}
+			dataFactory.getBook = function(id) {
+				return $http.get(urlBase + '/' + id);
+			}
 
-		dataFactory.updateBook = function (book) {
-			return $http.put(urlBase + '/' + book._id, book);
-		}
+			dataFactory.insertBook = function(book) {
+				return $http.post(urlBase, book);
+			}
 
-		dataFactory.deleteBook = function (id) {
-			return $http.delete(urlBase + '/' + id);
-		}
+			dataFactory.updateBook = function (book) {
+				return $http.put(urlBase + '/' + book._id, book);
+			}
 
-		return dataFactory;
-}])
+			dataFactory.deleteBook = function (id) {
+				return $http.delete(urlBase + '/' + id);
+			}
 
+			return dataFactory;
+	}])
+})();
+
+(function() {
 angular.module('books.api')
 	.service('BooksApi', ['$q', 'dataFactory', BooksApi ]);
 
@@ -66,7 +72,11 @@ angular.module('books.api')
 		this.createBook = function (book) {
 
 			return dataFactory.insertBook(book);
+		};
+		this.updateBook = function(book) {
+			return dataFactory.updateBook(book);
 		}
 
 
 	}
+})();

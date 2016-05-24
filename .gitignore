@@ -9,3 +9,6 @@ bower_components/
 
 # Optional npm cache directory
 .npm
+
+# sourse code
+client/public/js/

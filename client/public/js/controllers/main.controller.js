@@ -1,10 +1,13 @@
-'use strict';
+(function() {
+	'use strict';
 
-angular.module('MyApp')
-	.controller('MainController', [
-		'$state',
-		MainController]);
+	angular.module('MyApp')
+		.controller('MainController', [
+			'$state',
+			MainController]);
 
-function MainController($state) {
-	console.log('MainController');
-}
+	function MainController($state) {
+		console.log('MainController');
+	}
+
+})();

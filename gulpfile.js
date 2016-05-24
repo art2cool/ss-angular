@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp = require('gulp'),
+    concat = require('gulp-concat'),
+    plumber = require('gulp-plumber'),
     nodemon = require('gulp-nodemon'),
     mocha = require('gulp-mocha'),
     gutil = require('gulp-util');
@@ -25,6 +27,20 @@ gulp.task('server', function () {
     });
 });
 
+/*
+    Concat AngularJS application
+*/
+gulp.task('build-app', function () {
+    gulp.src(['client/public/js/**/*.js'])
+        .pipe(plumber())
+        .pipe(concat('book-app.js'))
+        .pipe(gulp.dest('client/public/dist/js/'));
+});
+
+gulp.task('watch-app', function() {
+    gulp.watch(['client/public/js/**/*.js'], ['build-app'])
+});
+
 gulp.task('mocha', function() {
     return gulp.src(['./test/*.js'], {read: false})
         .pipe(mocha({reporter: 'spec'}))
@@ -36,4 +52,6 @@ gulp.task('watch-mocha', function() {
     gulp.watch(['./**/*.js', 'test/**/*.js'], ['mocha'])
 });
 
-gulp.task('default', ['server', 'watch-mocha']);
+gulp.task('test', ['server', 'watch-mocha']);
+
+gulp.task('watch', ['build-app', 'watch-app']);

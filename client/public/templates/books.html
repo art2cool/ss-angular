@@ -19,20 +19,26 @@
 				<td><input type="text" ng-model="BooksCtrl.model.genre"></input></td>
 				<td><input type="checkbox" ng-model="BooksCtrl.model.read"></input></td>
 				<td>
-					<div class="btn btn-success btn-xs" ng-click="BooksCtrl.createBook(BooksCtrl.model)">ok</div>
+					<div class="btn btn-success btn-xs" ng-if="!BooksCtrl.edit" ng-click="BooksCtrl.createBook(BooksCtrl.model)">ok</div>
 					<div class="btn btn-default btn-xs" ng-click="BooksCtrl.newRowShow = false"> X </div>
 				</td>
 				
 			</tr>
 			<tr ng-repeat="book in BooksCtrl.books">
 				<td>{{$index + 1}}</td>
-				<td>{{book.author}}</td>
-				<td>{{book.title}}</td>
-				<td>{{book.genre}}</td>
-				<td>{{book.read}}</td>
+				<td ng-if="!book.edit">{{book.author}}</td>
+				<td ng-if="book.edit"><input type="text"  ng-model="BooksCtrl.model.author"></input></td>
+				<td ng-if="!book.edit">{{book.title}}</td>
+				<td ng-if="book.edit"><input type="text"   ng-model="BooksCtrl.model.title"></input></td>
+				<td ng-if="!book.edit">{{book.genre}}</td>
+				<td ng-if="book.edit"><input type="text"   ng-model="BooksCtrl.model.genre"></input></td>
+				<td ng-if="!book.edit" >{{book.read}}</td>
+				<td ng-if="book.edit"><input type="checkbox"   ng-model="BooksCtrl.model.read"></input></td>
 				<td>
-					<div class="btn btn-primary btn-xs">edit</div>
-					<div class="btn btn-danger btn-xs" ng-click = BooksCtrl.removeBook(book)>del</div>
+					<div class="btn btn-primary btn-xs" ng-if="!book.edit" ng-click = BooksCtrl.editBook(book)>edit</div>
+					<div class="btn btn-success btn-xs" ng-if="book.edit" ng-click="BooksCtrl.updateBook(book)">update</div>
+					<div class="btn btn-default btn-xs" ng-if="book.edit" ng-click="BooksCtrl.cancelEdit(book)"> X </div>
+					<div class="btn btn-danger btn-xs" ng-if="!book.edit" ng-click = BooksCtrl.removeBook(book)>del</div>
 				</td>
 			</tr>
 		</tbody>
